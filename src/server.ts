@@ -1,9 +1,10 @@
 import express from 'express';
 import http from 'http';
-import { Server, Socket, ServerOptions } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 import Play from './types/Play';
 import Player from './types/Player';
 import Room from './types/Room';
+import { generateBoard } from './utils';
 
 const options: any = {
     serveClient: true,
@@ -106,16 +107,7 @@ io.on('connection', (socket: Socket) => {
                 name: data.room_name,
                 password: data.room_password,
                 players: [player],
-                board: [
-                    [0, 'B', 0, 'B', 0, 'B', 0, 'B'],
-                    ['B', 0, 'B', 0, 'B', 0, 'B', 0],
-                    [0, 'B', 0, 'B', 0, 'B', 0, 'B'],
-                    [0, 0, 0, 0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 0],
-                    ['A', 0, 'A', 0, 'A', 0, 'A', 0],
-                    [0, 'A', 0, 'A', 0, 'A', 0, 'A'],
-                    ['A', 0, 'A', 0, 'A', 0, 'A', 0]
-                ]
+                board: generateBoard()
             };
 
             rooms.push(r);

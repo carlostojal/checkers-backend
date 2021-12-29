@@ -4,7 +4,7 @@ type Room = {
     name: string;
     password: string;
     players: Player[];
-    board: any
+    board: [][]
 };
 
 export default Room;
